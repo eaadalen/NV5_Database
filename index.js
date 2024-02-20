@@ -1,12 +1,12 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const uuid = require('uuid');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
 const Models = require('./models.js');
 const { check, validationResult } = require('express-validator');
 const Movies = Models.Movie;
 const Users = Models.User;
+const Projects = Models.Project;
 const app = express();
 const cors = require('cors');
 let allowedOrigins = ['http://localhost:8080', 'http://localhost:1234', 'http://localhost:4200', 'https://myflix-client-eaadalen.netlify.app', 'https://eaadalen.github.io'];
@@ -29,7 +29,9 @@ let auth = require('./auth')(app);
 const passport = require('passport');
 require('./passport');
 
-mongoose.connect("mongodb+srv://eaadalen112:BL_Pgv1aadV8WeF@movie-api.hewzgmc.mongodb.net/test?retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology: true });
+//mongoose.connect("mongodb+srv://eaadalen112:BL_Pgv1aadV8WeF@movie-api.hewzgmc.mongodb.net/test?retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect("mongodb+srv://erikaadalen:lStIKkb8PkTPoS7a@nv5-project-info.hx7f5vb.mongodb.net/?retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect("mongodb://localhost:27017/NV5-Project-Info", { useNewUrlParser: true, useUnifiedTopology: true });
 
 // Greeting message
 app.get('/', (req, res) => {
