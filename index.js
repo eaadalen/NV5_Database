@@ -48,7 +48,7 @@ app.get('/movies', passport.authenticate('jwt', { session: false }), (req, res) 
 });
 
 // Gets the full list of projects
-app.get('/projects', passport.authenticate('jwt', { session: false }), (req, res) => {
+app.get('/projects', (req, res) => {
   Projects.find()
       .then((projects) => {
         res.status(201).json(projects);
