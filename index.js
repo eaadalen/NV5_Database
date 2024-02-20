@@ -47,6 +47,18 @@ app.get('/movies', passport.authenticate('jwt', { session: false }), (req, res) 
       });
 });
 
+// Gets the full list of projects
+app.get('/projects', passport.authenticate('jwt', { session: false }), (req, res) => {
+  Projects.find()
+      .then((projects) => {
+        res.status(201).json(projects);
+      })
+      .catch((err) => {
+        console.error(err);
+        res.status(500).send('Error: ' + err);
+      });
+});
+
 // Create a new user
 app.post('/users',
   [
