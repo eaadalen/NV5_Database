@@ -29,9 +29,7 @@ let auth = require('./auth')(app);
 const passport = require('passport');
 require('./passport');
 
-//mongoose.connect("mongodb+srv://eaadalen112:BL_Pgv1aadV8WeF@movie-api.hewzgmc.mongodb.net/test?retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology: true });
 mongoose.connect("mongodb+srv://erikaadalen:lStIKkb8PkTPoS7a@nv5-project-info.hx7f5vb.mongodb.net/?retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology: true });
-mongoose.connect("mongodb://localhost:27017/NV5-Project-Info", { useNewUrlParser: true, useUnifiedTopology: true });
 
 // Greeting message
 app.get('/', (req, res) => {
