@@ -1,10 +1,11 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const uuid = require('uuid');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
 const Models = require('./models.js');
 const { check, validationResult } = require('express-validator');
-const Projects = Models.Project;
+const Movies = Models.Movie;
 const Users = Models.User;
 const app = express();
 const cors = require('cors');
@@ -24,6 +25,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(express.static('public'));
 app.use(morgan('common'));
+let auth = require('./auth')(app);
 const passport = require('passport');
 require('./passport');
 
@@ -34,11 +36,12 @@ app.get('/', (req, res) => {
   res.send("Hello");
 });
 
+
 // Gets the full list of projects
-app.get('/projects', (req, res) => {
-  Projects.find()
-      .then((projects) => {
-        res.status(201).json(projects);
+app.get('/projects', passport.authenticate('jwt', { session: false }), (req, res) => {
+  Movies.find()
+      .then((movies) => {
+        res.status(201).json(movies);
       })
       .catch((err) => {
         console.error(err);
@@ -46,6 +49,20 @@ app.get('/projects', (req, res) => {
       });
 });
 
+// Get full list of users
+app.get('/users', passport.authenticate('jwt', { session: false }), (req, res) => {
+  Users.find()
+      .then((users) => {
+        res.status(201).json(users);
+      })
+      .catch((err) => {
+        console.error(err);
+        res.status(500).send('Error: ' + err);
+      });
+});
+
+
+// Create a new user
 app.post('/users',
   [
     check('Username', 'Username is required').isLength({min: 5}),
