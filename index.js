@@ -61,7 +61,6 @@ app.get('/users', passport.authenticate('jwt', { session: false }), (req, res) =
       });
 });
 
-
 // Create a new user
 app.post('/users',
   [
