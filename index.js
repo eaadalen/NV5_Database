@@ -5,7 +5,7 @@ const morgan = require('morgan');
 const mongoose = require('mongoose');
 const Models = require('./models.js');
 const { check, validationResult } = require('express-validator');
-const Movies = Models.Movie;
+const Projects = Models.Project;
 const Users = Models.User;
 const app = express();
 const cors = require('cors');
@@ -39,9 +39,9 @@ app.get('/', (req, res) => {
 
 // Gets the full list of projects
 app.get('/projects', passport.authenticate('jwt', { session: false }), (req, res) => {
-  Movies.find()
-      .then((movies) => {
-        res.status(201).json(movies);
+  Projects.find()
+      .then((projects) => {
+        res.status(201).json(projects);
       })
       .catch((err) => {
         console.error(err);
