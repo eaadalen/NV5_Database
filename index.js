@@ -36,7 +36,6 @@ app.get('/', (req, res) => {
   res.send("Hello");
 });
 
-
 // Gets the full list of projects
 app.get('/projects', passport.authenticate('jwt', { session: false }), (req, res) => {
   Projects.find()
@@ -142,6 +141,7 @@ app.post('/input-project',
       });
   });
 
+// error handling
 app.use((err, req, res, next) => {
     console.error(err.stack);
     res.status(500).send('Something broke!');

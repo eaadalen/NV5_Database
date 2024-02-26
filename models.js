@@ -5,6 +5,11 @@ let projectSchema = mongoose.Schema({
   Title: {type: String, required: true},
   ProjectNumber: {type: String, required: true},
   Description: {type: String, required: true},
+  Keywords: {type: String, required: true},
+  FileLocation: {type: String, required: true},
+  ProjectManager: {type: String, required: true},
+  ProjectStaff: {type: String, required: true},
+  Systems_and_Equipment: {type: String, required: true}
 });
 
 let userSchema = mongoose.Schema({
