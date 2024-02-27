@@ -9,7 +9,7 @@ const Projects = Models.Project;
 const Users = Models.User;
 const app = express();
 const cors = require('cors');
-let allowedOrigins = ['http://localhost:8080', 'http://localhost:1234', 'http://localhost:4200', 'https://myflix-client-eaadalen.netlify.app', 'https://eaadalen.github.io'];
+let allowedOrigins = ['http://localhost:8080', 'http://localhost:1234', 'http://localhost:4200', 'https://nv5-database.netlify.app', 'https://eaadalen.github.io'];
 const port = process.env.PORT || 8080;
 app.use(cors({
   origin: (origin, callback) => {
